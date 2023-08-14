@@ -46,14 +46,22 @@ export const Form = () => {
             control={control}
             name="firstname"
             render={({ field }) => (
-              <Input {...field} error={!!errors.firstname} />
+              <Input
+                {...field}
+                error={!!errors.firstname}
+                placeholder="First Name"
+              />
             )}
           />
           <Controller
             control={control}
             name="lastname"
             render={({ field }) => (
-              <Input {...field} error={!!errors.lastname} />
+              <Input
+                {...field}
+                error={!!errors.lastname}
+                placeholder="Last Name"
+              />
             )}
           />
 
