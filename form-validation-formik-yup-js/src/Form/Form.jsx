@@ -54,7 +54,7 @@ export const Form = () => {
             onBlur={handleBlur}
             value={values.lastname}
           />
-          <NestedComponent name={"location"} />
+          <NestedComponent />
           <Button type="submit" disabled={!isValid}>
             Submit
           </Button>

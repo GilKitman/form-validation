@@ -2,8 +2,8 @@ import { MenuItem, Select } from "@mui/material";
 import { useField } from "formik";
 import { locations } from "./Form";
 
-export const NestedComponent = ({ name }) => {
-  const [field, meta] = useField({ name });
+export const NestedComponent = () => {
+  const [field, meta] = useField({ name: "location" });
   const { onChange, ...restField } = field;
 
   return (

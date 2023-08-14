@@ -2,12 +2,8 @@ import { MenuItem, Select } from "@mui/material";
 import { useField } from "formik";
 import { FormValues, locations } from "./Form";
 
-interface NestedComponentProps {
-  name: string;
-}
-
-export const NestedComponent: React.FC<NestedComponentProps> = ({ name }) => {
-  const [field, meta] = useField<FormValues>({ name });
+export const NestedComponent = () => {
+  const [field, meta] = useField<FormValues>({ name: "location" });
   const { onChange, ...restField } = field;
 
   return (
