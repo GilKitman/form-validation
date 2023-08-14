@@ -6,16 +6,12 @@ import { NestedComponent } from "./NestedComponent";
 export const locations = ["Dublin", "Manchester", "USA", "Other"] as const;
 
 const schema = yup.object({
-  firstname: yup.string().min(3),
-  lastname: yup.string().min(2),
-  location: yup.string().oneOf(locations),
+  firstname: yup.string().min(3).required(),
+  lastname: yup.string().min(2).required(),
+  location: yup.string().oneOf(locations).required(),
 });
 
-export type FormValues = {
-  firstname: string;
-  lastname: string;
-  location: "Dublin" | "Manchester" | "USA" | "Other";
-};
+export type FormValues = yup.InferType<typeof schema>;
 
 const onSubmit = (formData: FormValues) =>
   alert(JSON.stringify(formData, null, 2));
