@@ -1,14 +1,16 @@
 import { Button, Input } from "@mui/material";
 import { useFormik, FormikProvider } from "formik";
+import { toFormikValidationSchema } from "zod-formik-adapter";
+import * as zod from "zod";
 import * as yup from "yup";
 import { NestedComponent } from "./NestedComponent";
 
 export const locations = ["Dublin", "Manchester", "USA", "Other"];
 
-const schema = yup.object({
-  firstname: yup.string().min(3),
-  lastname: yup.string().min(2),
-  location: yup.string().oneOf(locations),
+const schema = zod.object({
+  firstname: zod.string().min(3),
+  lastname: zod.string().min(2),
+  location: zod.enum(locations),
 });
 
 const onSubmit = (formData) => alert(JSON.stringify(formData, null, 2));
@@ -16,7 +18,7 @@ const onSubmit = (formData) => alert(JSON.stringify(formData, null, 2));
 export const Form = () => {
   const formik = useFormik({
     initialValues: { firstname: "", lastname: "", location: "Dublin" },
-    validationSchema: schema,
+    validationSchema: toFormikValidationSchema(schema),
     onSubmit,
     validateOnChange: true,
     validateOnBlur: true,
