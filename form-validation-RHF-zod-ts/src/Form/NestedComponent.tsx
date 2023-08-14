@@ -8,12 +8,23 @@ export const NestedComponent = () => {
     formState: { errors },
   } = useFormContext<FormValues>();
 
-  const { field } = useController({
+  const {
+    field: { onChange, ...restField },
+  } = useController({
     control,
     name: "location",
   });
   return (
-    <Select {...field} error={!!errors.location}>
+    <Select
+      {...restField}
+      onChange={(event) => {
+        alert(
+          "We can perform some logic on the event, and then pass it to the form's onChange callback"
+        );
+        onChange(event);
+      }}
+      error={!!errors.location}
+    >
       {locations.map((location) => {
         return (
           <MenuItem key={location} value={location}>
